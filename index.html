@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Picture</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="hero">
+        <div id="animate-background-pic">
+            <div class="navbar">
+                <img src="images/logo.png" class="logo">
+                <div class="user">
+                    <button type="button">Explore</button>
+                    <img src="images/profile.jpg">
+                </div>
+            </div>
+
+
+            <div class="container">
+                <div class="info">
+                    <h1>Mars's Dynamic Pictures Website</h1>
+                    <p>This is a page with dynamic picture in the background</p>
+                    <input type="text" placeholder="Search">
+                </div>
+            </div>
+
+            <div class="slider">
+                <img src="images/left-arrow.png" alt="" id="prev">
+                <div class="preview">
+                    <img src="images/background.jpg" alt="" class="active thumbnail">
+                    <img src="images/img1.jpg" alt="" class="thumbnail">
+                    <img src="images/img2.jpg" alt="" class="thumbnail">
+                    <img src="images/img3.jpg" alt="" class="thumbnail">
+                    <img src="images/img4.jpg" alt="" class="thumbnail">
+                    <img src="images/img5.jpg" alt="" class="thumbnail">
+                    <img src="images/img6.jpg" alt="" class="thumbnail">
+                    <img src="images/img7.jpg" alt="" class="thumbnail">
+                    <img src="images/img8.jpg" alt="" class="thumbnail">
+                </div>
+                <img src="images/right-arrow.png" alt="" id="next">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var prev = document.getElementById("prev");
+        var next = document.getElementById("next");
+        var thumbnail = document.getElementsByClassName("thumbnail");
+        var hero = document.getElementById("animate-background-pic");
+
+        var backgroundImg = new Array(
+            "images/background.jpg",
+            "images/img1.jpg",
+            "images/img2.jpg",
+            "images/img3.jpg",
+            "images/img4.jpg",
+            "images/img5.jpg",
+            "images/img6.jpg",
+            "images/img7.jpg",
+            "images/img8.jpg",
+        );
+        let i = 0;
+        next.onclick = function () {
+            if (i < backgroundImg.length - 1) {
+                hero.style.backgroundImage = "url(" + backgroundImg[i + 1] + ")";
+                thumbnail[i + 1].classList.add("active");
+                thumbnail[i].classList.remove("active");
+                i++;
+            }
+            else {
+                i = 0;
+                hero.style.backgroundImage = "url(" + backgroundImg[i] + ")";
+                thumbnail[i].classList.add("active");
+                thumbnail[backgroundImg.length - 1].classList.remove("active");
+            }
+        }
+        prev.onclick = function () {
+            if (i > 0) {
+                hero.style.backgroundImage = 'url("' + backgroundImg[i - 1] + '")';
+                thumbnail[i - 1].classList.add("active");
+                thumbnail[i].classList.remove("active");
+                i--;
+            }
+            else {
+                i = backgroundImg.length - 1;
+                hero.style.backgroundImage = 'url("' + backgroundImg[i] + '")';
+                thumbnail[i].classList.add("active");
+                thumbnail[0].classList.remove("active");
+            }
+        }
+
+    </script>
+
+
+</body>
+
+</html>
